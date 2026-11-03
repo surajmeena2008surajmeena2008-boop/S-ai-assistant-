@@ -5,7 +5,7 @@ Apna personal AI chat app — ek hi `index.html` me. Chat, image, video (Gemini 
 
 ## GitHub par daalna
 1. github.com par **New repository** banao (jaise `s-ai`), Public rakho.
-2. **Add file → Upload files** se is folder ki saari files (`index.html`, `sw.js`, `manifest.webmanifest`, `icons/` …) drag karke upload karo → **Commit changes**.
+2. **Add file → Upload files** se is folder ki saari files (`index.html`, `sw.js`, `manifest.webmanifest`, `` …) drag karke upload karo → **Commit changes**.
 3. **Settings → Pages → Branch: `main` / root → Save**.
 4. 1–2 minute baad link milega: `https://<tumhara-username>.github.io/s-ai/`
 
