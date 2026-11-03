@@ -1,0 +1,17 @@
+{
+  "name": "S-AI",
+  "short_name": "S-AI",
+  "description": "S-AI — apna multi-provider AI chat: chat, image, video, code aur PPT.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a0840",
+  "theme_color": "#3a1a6e",
+  "lang": "hi",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
