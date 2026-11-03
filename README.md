@@ -16,5 +16,5 @@ Apna personal AI chat app — ek hi `index.html` me. Chat, image, video (Gemini 
 
 ## Zaroori baatein
 - API keys sirf tumhare device ke browser (localStorage) me save hoti hain. **Keys ko kabhi GitHub par commit mat karo.**
-- Update dene ke baad agar purana version dikhe, `sw.js` me `CACHE = 's-ai-v1'` ko `v2` kar do.
+- Update dene ke baad agar purana version dikhe, `sw.js` me `CACHE = 's-ai-v2'` ko `v3` kar do.
 - Locally test: folder me `python -m http.server 8000` chalao aur `http://localhost:8000` kholo (`file://` par install nahi hota).

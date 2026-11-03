@@ -325,6 +325,8 @@ body.ui-material .tools button.on{background-color:var(--s2)}
       <div class="seg" id="uis"></div>
     </details>
   </div>
+  <button id="ib" onclick="instClick()">📲 Install S-AI</button>
+  <div id="ibt" class="tag" style="white-space:pre-wrap"></div>
 </aside>
 <main ondragover="event.preventDefault()" ondrop="event.preventDefault();addFiles(event.dataTransfer.files)">
   <header>
@@ -792,6 +794,26 @@ async function dkImg(k,b){const d=DK[k],m=cm();if(!d)return;
 applyTheme();
 renderChat();
 </script>
-<script>if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})</script>
+<script>
+var deferredPrompt=null,swErr='';
+if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(e){swErr=String(e&&e.message||e)})});
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;document.getElementById('ibt').textContent='✅ Chrome install ke liye ready hai — button dabao.'});
+addEventListener('appinstalled',function(){deferredPrompt=null;document.getElementById('ibt').textContent='✅ Install ho gayi! Home screen / app drawer me S-AI dekho.'});
+async function instDiag(){var L=[],ok=function(b,t){L.push((b?'✅ ':'❌ ')+t)};
+ ok(location.protocol==='https:'||location.hostname==='localhost','HTTPS link ('+location.protocol+')');
+ ok(!(matchMedia('(display-mode: standalone)').matches),'Browser me khula hai (app me nahi)');
+ try{var l=document.querySelector('link[rel=manifest]'),r=await fetch(l.href);ok(r.ok,'manifest file mili (HTTP '+r.status+')');var m=await r.json();
+  ok(!!(m.name&&m.start_url&&m.display==='standalone'),'manifest fields theek');
+  for(var i=0;i<m.icons.length;i++){var x=await fetch(new URL(m.icons[i].src,l.href));ok(x.ok,'icon '+m.icons[i].sizes+' (HTTP '+x.status+')')}}
+ catch(e){ok(false,'manifest error: '+e.message)}
+ var reg=null;try{reg=await navigator.serviceWorker.getRegistration()}catch(e){}
+ ok(!!reg,'service worker chal raha hai'+(swErr?' — error: '+swErr:''));
+ ok(!!deferredPrompt,'Chrome ne install prompt diya');
+ return L.join('\n')}
+async function instClick(){var t=document.getElementById('ibt');
+ if(deferredPrompt){deferredPrompt.prompt();try{var c=await deferredPrompt.userChoice;t.textContent=c.outcome==='accepted'?'✅ Install ho raha hai…':'Install cancel hua. Dobara button dabao.'}catch(e){}deferredPrompt=null;return}
+ t.textContent='Check ho raha hai…';var d=await instDiag();
+ t.textContent=d+'\n\nChrome ne abhi prompt nahi diya. Ye try karo: (1) Chrome ⋮ → Install app; (2) page 30 sec use karo, phir yahi button dabao; (3) Chrome → Site settings me is site ka data clear karke dobara kholo; (4) agar S-AI pehle se install hai to use hatao, phir dobara.'}
+</script>
 </body>
 </html>

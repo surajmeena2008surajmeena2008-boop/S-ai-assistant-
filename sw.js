@@ -1,5 +1,5 @@
 // S-AI service worker: app shell offline chalta hai. API calls kabhi cache nahi hoti.
-const CACHE = 's-ai-v1';
+const CACHE = 's-ai-v2';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
